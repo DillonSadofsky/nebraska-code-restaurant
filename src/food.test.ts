@@ -45,7 +45,12 @@ describe('foods data', () => {
 
 	it('points every item at an image registered in foodImages', () => {
 		for (const food of foods) {
-			expect(foodImages, `food #${food.id} image "${food.image}"`).toHaveProperty(food.image)
+			// Object.hasOwn treats the whole filename as a literal key. toHaveProperty(food.image)
+			// also works here, but its string argument is a dot-separated *path*, so keys like
+			// "burger.jpg" only pass by coincidence — this spells the intent out.
+			expect(Object.hasOwn(foodImages, food.image), `food #${food.id} image "${food.image}"`).toBe(
+				true,
+			)
 		}
 	})
 })
