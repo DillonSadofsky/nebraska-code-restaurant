@@ -1,8 +1,8 @@
 import type { Food, FoodTag } from './food'
 
 export type FoodFilter = {
-  q: string
-  tags: Array<FoodTag>
+	q: string
+	tags: Array<FoodTag>
 }
 
 /**
@@ -15,15 +15,15 @@ export type FoodFilter = {
  *   the query filter to appear.
  */
 export function filterFoods(foods: Array<Food>, { q, tags }: FoodFilter): Array<Food> {
-  const query = q.trim().toLowerCase()
+	const query = q.trim().toLowerCase()
 
-  return foods.filter((food) => {
-    const matchesTags = tags.length === 0 || tags.some((tag) => food.tags.includes(tag))
-    if (!matchesTags) return false
+	return foods.filter((food) => {
+		const matchesTags = tags.length === 0 || tags.some((tag) => food.tags.includes(tag))
+		if (!matchesTags) return false
 
-    if (query === '') return true
+		if (query === '') return true
 
-    const haystack = [food.name, food.description, ...food.tags].join(' ').toLowerCase()
-    return haystack.includes(query)
-  })
+		const haystack = [food.name, food.description, ...food.tags].join(' ').toLowerCase()
+		return haystack.includes(query)
+	})
 }

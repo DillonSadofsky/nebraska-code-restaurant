@@ -42,30 +42,30 @@ import veggieSammySrc from './assets/food-images/veggie-sammy.jpg?w=640&format=w
 import veggieSammySrcSet from './assets/food-images/veggie-sammy.jpg?w=320;640&format=webp&as=srcset'
 
 export type FoodImage = {
-  src: string
-  srcSet: string
+	src: string
+	srcSet: string
 }
 
 export const foodImages: Record<string, FoodImage> = {
-  'banana-french-toast.jpg': { src: bananaFrenchToastSrc, srcSet: bananaFrenchToastSrcSet },
-  'burger.jpg': { src: burgerSrc, srcSet: burgerSrcSet },
-  'cajun-pasta.jpg': { src: cajunPastaSrc, srcSet: cajunPastaSrcSet },
-  'charcuterie.jpg': { src: charcuterieSrc, srcSet: charcuterieSrcSet },
-  'cheesecake.jpg': { src: cheesecakeSrc, srcSet: cheesecakeSrcSet },
-  'chicken-slammer.jpg': { src: chickenSlammerSrc, srcSet: chickenSlammerSrcSet },
-  'death-by-chocolate.jpg': { src: deathByChocolateSrc, srcSet: deathByChocolateSrcSet },
-  'donuts.jpg': { src: donutsSrc, srcSet: donutsSrcSet },
-  'italian-meatballs.jpg': { src: italianMeatballsSrc, srcSet: italianMeatballsSrcSet },
-  'lamb-chop.jpg': { src: lambChopSrc, srcSet: lambChopSrcSet },
-  'mango-lassi.jpg': { src: mangoLassiSrc, srcSet: mangoLassiSrcSet },
-  'mojito.jpg': { src: mojitoSrc, srcSet: mojitoSrcSet },
-  'old-fashioned.jpg': { src: oldFashionedSrc, srcSet: oldFashionedSrcSet },
-  'pesto-bowtie-pasta.jpg': { src: pestoBowtiePastaSrc, srcSet: pestoBowtiePastaSrcSet },
-  'pizza.jpg': { src: pizzaSrc, srcSet: pizzaSrcSet },
-  'pork-chop.jpg': { src: porkChopSrc, srcSet: porkChopSrcSet },
-  'ramen.jpg': { src: ramenSrc, srcSet: ramenSrcSet },
-  'salmon.jpg': { src: salmonSrc, srcSet: salmonSrcSet },
-  'salmon-salad.jpg': { src: salmonSaladSrc, srcSet: salmonSaladSrcSet },
-  'street-tacos.jpg': { src: streetTacosSrc, srcSet: streetTacosSrcSet },
-  'veggie-sammy.jpg': { src: veggieSammySrc, srcSet: veggieSammySrcSet },
+	'banana-french-toast.jpg': { src: bananaFrenchToastSrc, srcSet: bananaFrenchToastSrcSet },
+	'burger.jpg': { src: burgerSrc, srcSet: burgerSrcSet },
+	'cajun-pasta.jpg': { src: cajunPastaSrc, srcSet: cajunPastaSrcSet },
+	'charcuterie.jpg': { src: charcuterieSrc, srcSet: charcuterieSrcSet },
+	'cheesecake.jpg': { src: cheesecakeSrc, srcSet: cheesecakeSrcSet },
+	'chicken-slammer.jpg': { src: chickenSlammerSrc, srcSet: chickenSlammerSrcSet },
+	'death-by-chocolate.jpg': { src: deathByChocolateSrc, srcSet: deathByChocolateSrcSet },
+	'donuts.jpg': { src: donutsSrc, srcSet: donutsSrcSet },
+	'italian-meatballs.jpg': { src: italianMeatballsSrc, srcSet: italianMeatballsSrcSet },
+	'lamb-chop.jpg': { src: lambChopSrc, srcSet: lambChopSrcSet },
+	'mango-lassi.jpg': { src: mangoLassiSrc, srcSet: mangoLassiSrcSet },
+	'mojito.jpg': { src: mojitoSrc, srcSet: mojitoSrcSet },
+	'old-fashioned.jpg': { src: oldFashionedSrc, srcSet: oldFashionedSrcSet },
+	'pesto-bowtie-pasta.jpg': { src: pestoBowtiePastaSrc, srcSet: pestoBowtiePastaSrcSet },
+	'pizza.jpg': { src: pizzaSrc, srcSet: pizzaSrcSet },
+	'pork-chop.jpg': { src: porkChopSrc, srcSet: porkChopSrcSet },
+	'ramen.jpg': { src: ramenSrc, srcSet: ramenSrcSet },
+	'salmon.jpg': { src: salmonSrc, srcSet: salmonSrcSet },
+	'salmon-salad.jpg': { src: salmonSaladSrc, srcSet: salmonSaladSrcSet },
+	'street-tacos.jpg': { src: streetTacosSrc, srcSet: streetTacosSrcSet },
+	'veggie-sammy.jpg': { src: veggieSammySrc, srcSet: veggieSammySrcSet },
 }
