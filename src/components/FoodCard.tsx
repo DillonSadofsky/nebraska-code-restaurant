@@ -1,5 +1,5 @@
 import type { Food } from '../food'
-import { foodImages } from '../food-images'
+import { foodImages, type FoodImage } from '../food-images'
 import { formatPrice } from '../locale'
 
 type FoodCardProps = {
@@ -7,19 +7,35 @@ type FoodCardProps = {
 	priority?: boolean
 }
 
+// Warn once per missing key so a forgotten food-images.ts entry surfaces in dev
+// without spamming the console on every filter keystroke / re-render.
+const warnedMissingImages = new Set<string>()
+
+function warnMissingImage(key: string) {
+	if (import.meta.env.DEV && !warnedMissingImages.has(key)) {
+		warnedMissingImages.add(key)
+		console.warn(
+			`FoodCard: no processed image for "${key}". Add an import to food-images.ts (or set food.imageSrc).`,
+		)
+	}
+}
+
 export default function FoodCard({ food, priority = false }: FoodCardProps) {
-	// May be undefined if food.image has no matching entry in food-images.ts
-	// (adding a dish is a two-file change). Fall back to the empty tinted box
-	// rather than crashing on image.src.
-	const image = foodImages[food.image]
+	const image: FoodImage | undefined = food.imageSrc
+		? { src: food.imageSrc, srcSet: '' }
+		: foodImages[food.image]
+
+	if (!image) {
+		warnMissingImage(food.image)
+	}
 
 	return (
 		<article className="border-border bg-bg flex h-full flex-col overflow-hidden rounded-lg border text-left shadow-sm">
 			<div className="bg-accent-bg aspect-[4/3] w-full overflow-hidden">
-				{image && (
+				{image ? (
 					<img
 						src={image.src}
-						srcSet={image.srcSet}
+						srcSet={image.srcSet || undefined}
 						sizes="(min-width: 1024px) 350px, (min-width: 640px) 45vw, 90vw"
 						width={640}
 						height={480}
@@ -28,6 +44,12 @@ export default function FoodCard({ food, priority = false }: FoodCardProps) {
 						fetchPriority={priority ? 'high' : 'auto'}
 						decoding="async"
 						className="h-full w-full object-cover"
+					/>
+				) : (
+					<div
+						role="img"
+						aria-label={food.name}
+						className="text-text flex h-full w-full items-center justify-center text-sm"
 					/>
 				)}
 			</div>

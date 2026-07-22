@@ -35,6 +35,21 @@ describe('FoodCard', () => {
 		render(<FoodCard food={foodWithMissingImage} />)
 
 		expect(screen.getByRole('heading', { name: 'Burger' })).toBeInTheDocument()
-		expect(screen.queryByRole('img')).not.toBeInTheDocument()
+		// Now renders a placeholder instead of nothing
+		const placeholder = screen.getByRole('img', { name: 'Burger' })
+		expect(placeholder.tagName).toBe('DIV')
+	})
+
+	it('renders a runtime imageSrc directly when provided', () => {
+		render(<FoodCard food={{ ...sampleFood, image: '', imageSrc: 'blob:preview-url' }} />)
+
+		expect(screen.getByAltText('Burger')).toHaveAttribute('src', 'blob:preview-url')
+	})
+
+	it('renders a placeholder (no <img>) when the image key is unknown and no imageSrc is set', () => {
+		render(<FoodCard food={{ ...sampleFood, image: 'does-not-exist.jpg' }} />)
+
+		const placeholder = screen.getByRole('img', { name: 'Burger' })
+		expect(placeholder.tagName).toBe('DIV')
 	})
 })

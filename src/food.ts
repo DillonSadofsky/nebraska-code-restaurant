@@ -2,6 +2,7 @@ export type Food = {
 	id: number
 	name: string
 	image: string
+	imageSrc?: string
 	price: number
 	description: string
 	tags: Array<FoodTag>
