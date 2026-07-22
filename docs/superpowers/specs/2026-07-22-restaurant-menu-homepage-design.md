@@ -42,6 +42,7 @@ Renders a `<ul>` with one `<li>` per food, each containing a `FoodCard`. The `<u
 ### FoodCard
 
 Props: a single `Food`. Renders:
+
 - `<img>` — responsive `srcSet` from the image pipeline, `alt={food.name}`, explicit `width`/`height`, `loading`/`fetchpriority` per position (see Images).
 - Name as an `<h2>` (one level under the page's `<h1>`; `MenuGrid` introduces no heading of its own).
 - Price via `formatPrice(food.price)` from `locale.ts`.
@@ -91,6 +92,7 @@ No i18n library is added in this pass. Two seams are put in place so a library c
 2. **`src/content/strings.ts`** — a small dictionary of UI copy (currently just the page heading) keyed by locale, with a `t(key)` lookup helper that reads from `DEFAULT_LOCALE`. Establishes where translated UI strings would live.
 
 **What's explicitly not solved yet, and the documented next step:** `food.ts`'s `name`, `description`, and `tags` values are hardcoded English strings baked directly into the data array. Localizing food content later requires one of:
+
 - Restructuring `food.ts` so `name`/`description`/`tags` are keyed lookups (e.g. `nameKey: "food.burger.name"`) resolved through a message catalog per locale, or
 - Splitting the food data itself into per-locale files (`food.en.ts`, `food.es.ts`, ...) keyed by the same `id`.
 
