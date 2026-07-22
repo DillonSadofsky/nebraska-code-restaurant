@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
+import { createContext, useContext, useMemo, useRef, useState, type ReactNode } from 'react'
 import { foods as builtInFoods } from './food'
 import type { Food, FoodTag } from './food'
 
@@ -23,13 +23,17 @@ function nextId(foods: Array<Food>): number {
 
 export function FoodStoreProvider({ children }: { children: ReactNode }) {
 	const [addedFoods, setAddedFoods] = useState<Array<Food>>([])
+	// Monotonic id source so ids never collide even if addFood is called
+	// multiple times before a re-render. Seeded just past the built-in ids.
+	const nextIdRef = useRef(nextId(builtInFoods))
 
 	const store = useMemo<FoodStore>(() => {
 		const foods = [...builtInFoods, ...addedFoods]
 		return {
 			foods,
 			addFood(input) {
-				const food: Food = { id: nextId(foods), image: '', ...input }
+				const food: Food = { id: nextIdRef.current, image: '', ...input }
+				nextIdRef.current += 1
 				setAddedFoods((previous) => [...previous, food])
 				return food
 			},
