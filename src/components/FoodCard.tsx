@@ -11,8 +11,8 @@ export default function FoodCard({ food, priority = false }: FoodCardProps) {
   const image = foodImages[food.image]
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-bg text-left shadow-sm">
-      <div className="aspect-[4/3] w-full overflow-hidden bg-accent-bg">
+    <article className="border-border bg-bg flex h-full flex-col overflow-hidden rounded-lg border text-left shadow-sm">
+      <div className="bg-accent-bg aspect-[4/3] w-full overflow-hidden">
         <img
           src={image.src}
           srcSet={image.srcSet}
@@ -28,15 +28,13 @@ export default function FoodCard({ food, priority = false }: FoodCardProps) {
       </div>
       <div className="flex flex-1 flex-col gap-2 p-4">
         <div className="flex items-baseline justify-between gap-2">
-          <h2 className="text-lg font-medium text-text-h">{food.name}</h2>
-          <span className="whitespace-nowrap font-mono text-text-h">
-            {formatPrice(food.price)}
-          </span>
+          <h2 className="text-text-h text-lg font-medium">{food.name}</h2>
+          <span className="text-text-h font-mono whitespace-nowrap">{formatPrice(food.price)}</span>
         </div>
-        <p className="flex-1 text-sm text-text">{food.description}</p>
+        <p className="text-text flex-1 text-sm">{food.description}</p>
         <ul className="flex flex-wrap gap-1.5">
           {food.tags.map((tag) => (
-            <li key={tag} className="rounded-full bg-accent-bg px-2 py-0.5 text-xs text-accent">
+            <li key={tag} className="bg-accent-bg text-accent rounded-full px-2 py-0.5 text-xs">
               {tag}
             </li>
           ))}
