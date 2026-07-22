@@ -7,27 +7,10 @@ type FoodCardProps = {
 	priority?: boolean
 }
 
-// Warn once per missing key so a forgotten food-images.ts entry surfaces in dev
-// without spamming the console on every filter keystroke / re-render.
-const warnedMissingImages = new Set<string>()
-
-function warnMissingImage(key: string) {
-	if (import.meta.env.DEV && !warnedMissingImages.has(key)) {
-		warnedMissingImages.add(key)
-		console.warn(
-			`FoodCard: no processed image for "${key}". Add an import to food-images.ts (or set food.imageSrc).`,
-		)
-	}
-}
-
 export default function FoodCard({ food, priority = false }: FoodCardProps) {
 	const image: FoodImage | undefined = food.imageSrc
 		? { src: food.imageSrc, srcSet: '' }
 		: foodImages[food.image]
-
-	if (!image) {
-		warnMissingImage(food.image)
-	}
 
 	return (
 		<article className="border-border bg-bg flex h-full flex-col overflow-hidden rounded-lg border text-left shadow-sm">
