@@ -15,6 +15,10 @@ dist-ssr
 docs/superpowers/plans/
 .superpowers/
 
+# TanStack Router temp files (route tree is written here before being swapped
+# into src/routeTree.gen.ts). Always throwaway — never commit.
+.tanstack
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
