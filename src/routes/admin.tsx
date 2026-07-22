@@ -47,6 +47,13 @@ function AdminPage() {
 
 	function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
 		const file = event.target.files?.[0]
+		// Release the previous preview before minting a new one so repeatedly picking
+		// different files doesn't orphan blob URLs. We only revoke the *pending* preview
+		// here — once a URL is submitted it's handed to the store and reused as the menu
+		// item's image, so it must outlive this component and is intentionally not revoked.
+		if (imageSrc) {
+			URL.revokeObjectURL(imageSrc)
+		}
 		setImageSrc(file ? URL.createObjectURL(file) : undefined)
 	}
 

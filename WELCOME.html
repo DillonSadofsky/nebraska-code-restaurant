@@ -390,7 +390,7 @@
 				</p>
 				<div class="facts">
 					<span class="fact"><b>21</b> menu items</span>
-					<span class="fact"><b>1</b> route (the menu)</span>
+					<span class="fact"><b>2</b> routes (menu + admin)</span>
 					<span class="fact">state lives in the <b>URL</b></span>
 					<span class="fact">tests <b>colocated</b></span>
 					<span class="fact">dark mode <b>automatic</b></span>
@@ -510,9 +510,9 @@
 				</p>
 				<pre>src/
 ├─ <span class="dir">routes/</span>
-│  ├─ __root.tsx          <span class="an">layout shell — just &lt;main&gt;&lt;Outlet/&gt;&lt;/main&gt;</span>
-│  ├─ index.tsx           <span class="an">the ONE page: wires search + filter + grid</span>
-│  └─ <span class="gen">routeTree.gen.ts</span>      <span class="an">⚠ AUTO-GENERATED — never hand-edit</span>
+│  ├─ __root.tsx          <span class="an">layout: FoodStoreProvider + &lt;main&gt;&lt;Outlet/&gt;&lt;/main&gt; + footer</span>
+│  ├─ index.tsx           <span class="an">the menu page: wires search + filter + grid</span>
+│  └─ admin.tsx           <span class="an">/admin add-a-menu-item form (in-memory)</span>
 ├─ <span class="dir">components/</span>
 │  ├─ MenuToolbar.tsx     <span class="an">search box + tag pills + clear button</span>
 │  ├─ MenuGrid.tsx        <span class="an">responsive &lt;ul&gt; of cards (1 / 2 / 3 cols)</span>
@@ -523,7 +523,9 @@
 ├─ food.ts                <span class="an">the menu DATA + Food / FoodTag types</span>
 ├─ filter-foods.ts        <span class="an">pure search/filter function</span>
 ├─ food-images.ts         <span class="an">filename → processed image map</span>
+├─ food-store.tsx         <span class="an">in-memory food store (context) + useFoodStore</span>
 ├─ search-schema.ts       <span class="an">Zod schema for URL search params</span>
+├─ <span class="gen">routeTree.gen.ts</span>       <span class="an">⚠ AUTO-GENERATED — never hand-edit</span>
 ├─ locale.ts              <span class="an">DEFAULT_LOCALE + formatPrice() (i18n seam)</span>
 ├─ index.css              <span class="an">Tailwind entry + @theme tokens + dark mode</span>
 └─ main.tsx               <span class="an">app entry: mounts the router</span>
@@ -603,21 +605,21 @@
 				</p>
 				<div class="cards">
 					<div class="card">
-						<span class="tag">Biggest footgun</span>
+						<span class="tag">Good to know</span>
 						<h3>Adding a menu item is a two-file change</h3>
 						<p>
-							<code>FoodCard</code> looks up its image with <code>foodImages[food.image]</code> and
-							immediately reads <code>image.src</code> — with <b>no guard</b>. If you add a dish to
-							<code>food.ts</code> whose <code>image</code> filename isn't also imported in
-							<code>food-images.ts</code> (which uses explicit per-image imports, not a glob), the
-							lookup is <code>undefined</code> and the card <b>crashes at render</b>. Always update
-							both files together.
+							<code>FoodCard</code> looks up its image with <code>foodImages[food.image]</code>. If
+							you add a dish to <code>food.ts</code> whose <code>image</code> filename isn't also
+							imported in <code>food-images.ts</code> (which uses explicit per-image imports, not a
+							glob), the lookup is <code>undefined</code>. FoodCard now <b>guards</b> this and renders
+							a blank placeholder tile instead of crashing — but the dish stays <b>image-less</b>
+							until you add the import, so still update both files together.
 						</p>
 					</div>
 
 					<div class="card">
 						<span class="tag">Don't touch</span>
-						<h3><code>src/routes/routeTree.gen.ts</code> is generated</h3>
+						<h3><code>src/routeTree.gen.ts</code> is generated</h3>
 						<p>
 							The TanStack Router Vite plugin regenerates it on every dev/build. Never edit it by
 							hand — add routes by adding files under <code>src/routes/</code>. It's
