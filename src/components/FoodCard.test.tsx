@@ -28,4 +28,13 @@ describe('FoodCard', () => {
 
 		expect(screen.getByAltText('Burger')).toBeInTheDocument()
 	})
+
+	it('renders without crashing when the image has no processed variant', () => {
+		const foodWithMissingImage: Food = { ...sampleFood, image: 'does-not-exist.jpg' }
+
+		render(<FoodCard food={foodWithMissingImage} />)
+
+		expect(screen.getByRole('heading', { name: 'Burger' })).toBeInTheDocument()
+		expect(screen.queryByRole('img')).not.toBeInTheDocument()
+	})
 })
