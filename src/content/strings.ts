@@ -9,6 +9,7 @@ type MessageKey =
 	| 'resultCount'
 	| 'noResults'
 	| 'clearFilters'
+	| 'adminLink'
 
 const messages: Record<string, Record<MessageKey, string>> = {
 	en: {
@@ -19,6 +20,7 @@ const messages: Record<string, Record<MessageKey, string>> = {
 		resultCount: 'Showing {count} of {total} dishes',
 		noResults: 'No dishes match your search. Try clearing a filter.',
 		clearFilters: 'Clear filters',
+		adminLink: 'Admin',
 	},
 }
 
