@@ -28,4 +28,20 @@ describe('FoodCard', () => {
 
 		expect(screen.getByAltText('Burger')).toBeInTheDocument()
 	})
+
+	it('renders without crashing when the image has no processed variant', () => {
+		const foodWithMissingImage: Food = { ...sampleFood, image: 'does-not-exist.jpg' }
+
+		render(<FoodCard food={foodWithMissingImage} />)
+
+		expect(screen.getByRole('heading', { name: 'Burger' })).toBeInTheDocument()
+		const placeholder = screen.getByRole('img', { name: 'Burger' })
+		expect(placeholder.tagName).toBe('DIV')
+	})
+
+	it('renders a runtime imageSrc directly when provided', () => {
+		render(<FoodCard food={{ ...sampleFood, image: '', imageSrc: 'blob:preview-url' }} />)
+
+		expect(screen.getByAltText('Burger')).toHaveAttribute('src', 'blob:preview-url')
+	})
 })

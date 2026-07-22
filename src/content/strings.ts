@@ -9,6 +9,18 @@ type MessageKey =
 	| 'resultCount'
 	| 'noResults'
 	| 'clearFilters'
+	| 'adminLink'
+	| 'adminHeading'
+	| 'adminBackLink'
+	| 'fieldName'
+	| 'fieldPrice'
+	| 'fieldDescription'
+	| 'fieldTags'
+	| 'fieldImage'
+	| 'adminSubmit'
+	| 'errorNameRequired'
+	| 'errorPricePositive'
+	| 'errorDescriptionRequired'
 
 const messages: Record<string, Record<MessageKey, string>> = {
 	en: {
@@ -19,6 +31,18 @@ const messages: Record<string, Record<MessageKey, string>> = {
 		resultCount: 'Showing {count} of {total} dishes',
 		noResults: 'No dishes match your search. Try clearing a filter.',
 		clearFilters: 'Clear filters',
+		adminLink: 'Admin',
+		adminHeading: 'Add a Menu Item',
+		adminBackLink: '← Back to menu',
+		fieldName: 'Name',
+		fieldPrice: 'Price',
+		fieldDescription: 'Description',
+		fieldTags: 'Tags',
+		fieldImage: 'Image',
+		adminSubmit: 'Add item',
+		errorNameRequired: 'Please enter a name.',
+		errorPricePositive: 'Please enter a price greater than 0.',
+		errorDescriptionRequired: 'Please enter a description.',
 	},
 }
 

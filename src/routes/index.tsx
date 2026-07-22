@@ -1,9 +1,9 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { foods } from '../food'
 import type { FoodTag } from '../food'
 import { filterFoods } from '../filter-foods'
 import { menuSearchSchema } from '../search-schema'
 import { t } from '../content/strings'
+import { useFoodStore } from '../food-store'
 import MenuGrid from '../components/MenuGrid'
 import MenuToolbar from '../components/MenuToolbar'
 
@@ -13,6 +13,7 @@ export const Route = createFileRoute('/')({
 })
 
 function MenuPage() {
+	const { foods } = useFoodStore()
 	const { q = '', tags = [] } = Route.useSearch()
 	const navigate = useNavigate({ from: Route.fullPath })
 

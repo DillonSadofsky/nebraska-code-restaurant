@@ -1,5 +1,5 @@
 import type { Food } from '../food'
-import { foodImages } from '../food-images'
+import { foodImages, type FoodImage } from '../food-images'
 import { formatPrice } from '../locale'
 
 type FoodCardProps = {
@@ -8,23 +8,33 @@ type FoodCardProps = {
 }
 
 export default function FoodCard({ food, priority = false }: FoodCardProps) {
-	const image = foodImages[food.image]
+	const image: FoodImage | undefined = food.imageSrc
+		? { src: food.imageSrc, srcSet: '' }
+		: foodImages[food.image]
 
 	return (
 		<article className="border-border bg-bg flex h-full flex-col overflow-hidden rounded-lg border text-left shadow-sm">
 			<div className="bg-accent-bg aspect-[4/3] w-full overflow-hidden">
-				<img
-					src={image.src}
-					srcSet={image.srcSet}
-					sizes="(min-width: 1024px) 350px, (min-width: 640px) 45vw, 90vw"
-					width={640}
-					height={480}
-					alt={food.name}
-					loading={priority ? 'eager' : 'lazy'}
-					fetchPriority={priority ? 'high' : 'auto'}
-					decoding="async"
-					className="h-full w-full object-cover"
-				/>
+				{image ? (
+					<img
+						src={image.src}
+						srcSet={image.srcSet || undefined}
+						sizes="(min-width: 1024px) 350px, (min-width: 640px) 45vw, 90vw"
+						width={640}
+						height={480}
+						alt={food.name}
+						loading={priority ? 'eager' : 'lazy'}
+						fetchPriority={priority ? 'high' : 'auto'}
+						decoding="async"
+						className="h-full w-full object-cover"
+					/>
+				) : (
+					<div
+						role="img"
+						aria-label={food.name}
+						className="text-text flex h-full w-full items-center justify-center text-sm"
+					/>
+				)}
 			</div>
 			<div className="flex flex-1 flex-col gap-2 p-4">
 				<div className="flex items-baseline justify-between gap-2">

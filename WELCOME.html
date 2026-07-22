@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>nebraska-code-restaurant — Developer Welcome</title>
+		<style>
+			:root {
+				--ink: #08060d;
+				--body: #4b4553;
+				--muted: #6b6375;
+				--bg: #faf9fc;
+				--surface: #ffffff;
+				--border: #e5e4e7;
+				--border-strong: #d4d2da;
+				--accent: #8b1fd6;
+				--accent-soft: rgba(170, 59, 255, 0.1);
+				--accent-line: rgba(170, 59, 255, 0.45);
+				--warn: #b45309;
+				--warn-soft: #fff5e6;
+				--warn-line: #f0b866;
+				--good: #157347;
+				--good-soft: #e9f6ee;
+				--code-bg: #f3f1f7;
+				--code-ink: #3b2b52;
+				--shadow: 0 1px 2px rgba(8, 6, 13, 0.04), 0 8px 24px -12px rgba(8, 6, 13, 0.12);
+
+				--serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+				--sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+				--mono: ui-monospace, 'Cascadia Code', 'Consolas', 'SF Mono', monospace;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--ink: #f3f1f6;
+					--body: #c7c3cf;
+					--muted: #928c9c;
+					--bg: #121218;
+					--surface: #1a1a22;
+					--border: #2b2c36;
+					--border-strong: #3a3b47;
+					--accent: #c084fc;
+					--accent-soft: rgba(192, 132, 252, 0.14);
+					--accent-line: rgba(192, 132, 252, 0.5);
+					--warn: #f0b866;
+					--warn-soft: rgba(240, 184, 102, 0.1);
+					--warn-line: rgba(240, 184, 102, 0.4);
+					--good: #5fd39a;
+					--good-soft: rgba(95, 211, 154, 0.12);
+					--code-bg: #22222c;
+					--code-ink: #d9cef0;
+					--shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+				}
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				background: var(--bg);
+				color: var(--body);
+				font-family: var(--sans);
+				font-size: 17px;
+				line-height: 1.65;
+				letter-spacing: 0.1px;
+				-webkit-font-smoothing: antialiased;
+				text-rendering: optimizeLegibility;
+			}
+
+			.wrap {
+				max-width: 880px;
+				margin: 0 auto;
+				padding: 0 24px 96px;
+			}
+
+			/* ---- Hero ---- */
+			.hero {
+				padding: 76px 0 40px;
+				border-bottom: 1px solid var(--border);
+				margin-bottom: 8px;
+			}
+			.eyebrow {
+				font-family: var(--mono);
+				font-size: 12.5px;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--accent);
+				margin: 0 0 20px;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.eyebrow::before {
+				content: '';
+				width: 26px;
+				height: 1.5px;
+				background: var(--accent-line);
+				display: inline-block;
+			}
+			h1 {
+				font-family: var(--serif);
+				font-weight: 600;
+				color: var(--ink);
+				font-size: clamp(38px, 6vw, 58px);
+				line-height: 1.02;
+				letter-spacing: -0.015em;
+				margin: 0 0 22px;
+				text-wrap: balance;
+			}
+			.lede {
+				font-size: 20px;
+				line-height: 1.55;
+				color: var(--body);
+				max-width: 62ch;
+				margin: 0;
+			}
+			.lede strong {
+				color: var(--ink);
+				font-weight: 600;
+			}
+
+			.facts {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px 10px;
+				margin-top: 30px;
+			}
+			.fact {
+				font-family: var(--mono);
+				font-size: 12.5px;
+				color: var(--muted);
+				background: var(--surface);
+				border: 1px solid var(--border);
+				padding: 5px 11px;
+				border-radius: 999px;
+			}
+			.fact b {
+				color: var(--ink);
+				font-weight: 600;
+			}
+
+			/* ---- Sections ---- */
+			section {
+				padding-top: 52px;
+			}
+			h2 {
+				font-family: var(--serif);
+				font-weight: 600;
+				color: var(--ink);
+				font-size: 27px;
+				letter-spacing: -0.01em;
+				margin: 0 0 6px;
+				display: flex;
+				align-items: baseline;
+				gap: 12px;
+			}
+			h2 .num {
+				font-family: var(--mono);
+				font-size: 13px;
+				font-weight: 500;
+				color: var(--accent);
+				letter-spacing: 0;
+			}
+			.section-sub {
+				margin: 0 0 24px;
+				color: var(--muted);
+				font-size: 15.5px;
+			}
+
+			h3 {
+				font-family: var(--sans);
+				font-size: 15px;
+				font-weight: 650;
+				color: var(--ink);
+				margin: 0 0 4px;
+				letter-spacing: 0.01em;
+			}
+
+			p {
+				margin: 0 0 14px;
+			}
+			a {
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1px solid var(--accent-line);
+			}
+			a:hover {
+				border-bottom-color: var(--accent);
+			}
+			:focus-visible {
+				outline: 2px solid var(--accent);
+				outline-offset: 2px;
+				border-radius: 3px;
+			}
+
+			code {
+				font-family: var(--mono);
+				font-size: 0.86em;
+				background: var(--code-bg);
+				color: var(--code-ink);
+				padding: 1.5px 6px;
+				border-radius: 5px;
+			}
+
+			/* ---- Tech grid ---- */
+			.tech {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1px;
+				background: var(--border);
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				overflow: hidden;
+			}
+			.tech > div {
+				background: var(--surface);
+				padding: 16px 18px;
+			}
+			.tech .role {
+				font-family: var(--mono);
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				color: var(--muted);
+				margin: 0 0 6px;
+			}
+			.tech .name {
+				color: var(--ink);
+				font-weight: 600;
+				font-size: 15.5px;
+			}
+			.tech .name .v {
+				color: var(--muted);
+				font-weight: 400;
+				font-family: var(--mono);
+				font-size: 12.5px;
+				margin-left: 6px;
+			}
+			.tech .note {
+				font-size: 13.5px;
+				color: var(--muted);
+				margin: 5px 0 0;
+				line-height: 1.5;
+			}
+
+			/* ---- Code blocks ---- */
+			pre {
+				background: var(--code-bg);
+				border: 1px solid var(--border);
+				border-radius: 10px;
+				padding: 16px 18px;
+				overflow-x: auto;
+				margin: 0 0 14px;
+				font-family: var(--mono);
+				font-size: 13.5px;
+				line-height: 1.7;
+				color: var(--code-ink);
+			}
+			pre .cmt {
+				color: var(--muted);
+			}
+			pre .cmd {
+				color: var(--ink);
+				font-weight: 600;
+			}
+			pre .dir {
+				color: var(--accent);
+				font-weight: 600;
+			}
+			pre .gen {
+				color: var(--warn);
+			}
+			pre .an {
+				color: var(--muted);
+				font-style: italic;
+			}
+
+			/* ---- Flow ---- */
+			.flow {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: stretch;
+				gap: 8px;
+				margin: 0 0 20px;
+			}
+			.flow .step {
+				flex: 1 1 120px;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 10px;
+				padding: 12px 14px;
+			}
+			.flow .step .k {
+				font-family: var(--mono);
+				font-size: 11px;
+				color: var(--muted);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+			}
+			.flow .step .f {
+				color: var(--ink);
+				font-weight: 600;
+				font-size: 14px;
+				margin-top: 3px;
+			}
+			.flow .arrow {
+				align-self: center;
+				color: var(--accent-line);
+				font-size: 20px;
+				line-height: 1;
+			}
+			@media (max-width: 620px) {
+				.flow .arrow {
+					transform: rotate(90deg);
+				}
+			}
+
+			/* ---- Callouts ---- */
+			.cards {
+				display: flex;
+				flex-direction: column;
+				gap: 14px;
+			}
+			.card {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-left: 3px solid var(--warn-line);
+				border-radius: 10px;
+				padding: 16px 20px;
+				box-shadow: var(--shadow);
+			}
+			.card.tip {
+				border-left-color: var(--good);
+			}
+			.card .tag {
+				font-family: var(--mono);
+				font-size: 10.5px;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				font-weight: 600;
+				padding: 2px 8px;
+				border-radius: 4px;
+				background: var(--warn-soft);
+				color: var(--warn);
+				margin-bottom: 9px;
+				display: inline-block;
+			}
+			.card.tip .tag {
+				background: var(--good-soft);
+				color: var(--good);
+			}
+			.card p:last-child {
+				margin-bottom: 0;
+			}
+			.card p {
+				font-size: 15px;
+				line-height: 1.6;
+			}
+
+			.note-line {
+				font-size: 14px;
+				color: var(--muted);
+				border-top: 1px solid var(--border);
+				margin-top: 64px;
+				padding-top: 20px;
+			}
+			ul.tight {
+				margin: 0 0 14px;
+				padding-left: 20px;
+			}
+			ul.tight li {
+				margin-bottom: 6px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<header class="hero">
+				<p class="eyebrow">Nebraska.Code() workshop &middot; onboarding</p>
+				<h1>Welcome to the Restaurant menu app</h1>
+				<p class="lede">
+					A small, deliberately modern
+					<strong>React&nbsp;19&nbsp;+&nbsp;TypeScript</strong> single-page app that renders a
+					restaurant menu you can search and filter by tag. It was built as a workshop exercise, so
+					the code is tidy and heavily commented — but it uses a
+					<strong>bleeding-edge stack</strong> and has a couple of footguns worth knowing before
+					your first change.
+				</p>
+				<div class="facts">
+					<span class="fact"><b>21</b> menu items</span>
+					<span class="fact"><b>2</b> routes (menu + admin)</span>
+					<span class="fact">state lives in the <b>URL</b></span>
+					<span class="fact">tests <b>colocated</b></span>
+					<span class="fact">dark mode <b>automatic</b></span>
+				</div>
+			</header>
+
+			<section>
+				<h2><span class="num">01</span> The stack</h2>
+				<p class="section-sub">
+					Everything is current-generation and moves fast. When docs or Stack Overflow disagree with
+					the code, trust the code — these versions are newer than most answers online.
+				</p>
+				<div class="tech">
+					<div>
+						<p class="role">UI</p>
+						<p class="name">React <span class="v">19.2</span></p>
+						<p class="note">
+							Rendered in <code>StrictMode</code>. No class components, no Redux — plain function
+							components.
+						</p>
+					</div>
+					<div>
+						<p class="role">Language</p>
+						<p class="name">TypeScript <span class="v">~6.0</span></p>
+						<p class="note">
+							Strict, bundler module resolution, <code>noEmit</code>. Vite does the transpiling.
+						</p>
+					</div>
+					<div>
+						<p class="role">Build &amp; dev server</p>
+						<p class="name">Vite <span class="v">8</span></p>
+						<p class="note">
+							HMR in dev; <code>tsc -b &amp;&amp; vite build</code> for prod. Config in
+							<code>vite.config.ts</code>.
+						</p>
+					</div>
+					<div>
+						<p class="role">Routing</p>
+						<p class="name">TanStack Router <span class="v">1.x</span></p>
+						<p class="note">
+							File-based routes in <code>src/routes/</code>, auto code-splitting, type-safe URL
+							search params.
+						</p>
+					</div>
+					<div>
+						<p class="role">Validation</p>
+						<p class="name">Zod <span class="v">4</span></p>
+						<p class="note">
+							Validates the URL's <code>?q=</code> and <code>?tags=</code> search params — never
+							throws, degrades gracefully.
+						</p>
+					</div>
+					<div>
+						<p class="role">Styling</p>
+						<p class="name">Tailwind CSS <span class="v">4</span></p>
+						<p class="note">
+							CSS-first config — <b>no <code>tailwind.config.js</code></b
+							>. Theme tokens live in <code>src/index.css</code>.
+						</p>
+					</div>
+					<div>
+						<p class="role">Images</p>
+						<p class="name">vite-imagetools</p>
+						<p class="note">
+							Generates resized WebP + <code>srcSet</code> at build time from source JPGs, for
+							Lighthouse performance.
+						</p>
+					</div>
+					<div>
+						<p class="role">Testing</p>
+						<p class="name">Vitest <span class="v">4</span> + Testing Library</p>
+						<p class="note">
+							jsdom environment. Config is folded into <code>vite.config.ts</code>, not a separate
+							file.
+						</p>
+					</div>
+					<div>
+						<p class="role">Linting</p>
+						<p class="name">Oxlint</p>
+						<p class="note">
+							<b>Not ESLint.</b> Rust-based, fast. Run <code>npm run lint</code>. Config in
+							<code>.oxlintrc.json</code>.
+						</p>
+					</div>
+					<div>
+						<p class="role">Formatting</p>
+						<p class="name">Prettier</p>
+						<p class="note">
+							Tabs, LF line endings (enforced via <code>.gitattributes</code>), with the Tailwind
+							class-sorting plugin.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2><span class="num">02</span> Get it running</h2>
+				<p class="section-sub">
+					Standard Vite lifecycle. From inside <code>nebraska-code-restaurant/</code>:
+				</p>
+				<pre><span class="cmt"># install once</span>
+<span class="cmd">npm install</span>
+
+<span class="cmd">npm run dev</span>          <span class="cmt"># start the dev server (HMR)</span>
+<span class="cmd">npm test</span>             <span class="cmt"># run the vitest suite once</span>
+<span class="cmd">npm run test:watch</span>   <span class="cmt"># tests in watch mode</span>
+<span class="cmd">npm run lint</span>         <span class="cmt"># oxlint</span>
+<span class="cmd">npm run format</span>       <span class="cmt"># prettier --write .</span>
+<span class="cmd">npm run build</span>        <span class="cmt"># type-check + production build</span></pre>
+			</section>
+
+			<section>
+				<h2><span class="num">03</span> Where things live</h2>
+				<p class="section-sub">
+					Flat and small. Almost all logic sits directly under <code>src/</code>; UI lives in
+					<code>src/components/</code>.
+				</p>
+				<pre>src/
+├─ <span class="dir">routes/</span>
+│  ├─ __root.tsx          <span class="an">layout: FoodStoreProvider + &lt;main&gt;&lt;Outlet/&gt;&lt;/main&gt; + footer</span>
+│  ├─ index.tsx           <span class="an">the menu page: wires search + filter + grid</span>
+│  └─ admin.tsx           <span class="an">/admin add-a-menu-item form (in-memory)</span>
+├─ <span class="dir">components/</span>
+│  ├─ MenuToolbar.tsx     <span class="an">search box + tag pills + clear button</span>
+│  ├─ MenuGrid.tsx        <span class="an">responsive &lt;ul&gt; of cards (1 / 2 / 3 cols)</span>
+│  └─ FoodCard.tsx        <span class="an">one dish: image, name, price, tags</span>
+├─ <span class="dir">content/</span>
+│  └─ strings.ts          <span class="an">UI copy dictionary + t() helper (i18n seam)</span>
+├─ <span class="dir">assets/food-images/</span>   <span class="an">source JPGs (processed at build time)</span>
+├─ food.ts                <span class="an">the menu DATA + Food / FoodTag types</span>
+├─ filter-foods.ts        <span class="an">pure search/filter function</span>
+├─ food-images.ts         <span class="an">filename → processed image map</span>
+├─ food-store.tsx         <span class="an">in-memory food store (context) + useFoodStore</span>
+├─ search-schema.ts       <span class="an">Zod schema for URL search params</span>
+├─ <span class="gen">routeTree.gen.ts</span>       <span class="an">⚠ AUTO-GENERATED — never hand-edit</span>
+├─ locale.ts              <span class="an">DEFAULT_LOCALE + formatPrice() (i18n seam)</span>
+├─ index.css              <span class="an">Tailwind entry + @theme tokens + dark mode</span>
+└─ main.tsx               <span class="an">app entry: mounts the router</span>
+
+<span class="an"># colocated: every X.tsx has an X.test.tsx right beside it</span></pre>
+			</section>
+
+			<section>
+				<h2><span class="num">04</span> How it works</h2>
+				<p class="section-sub">
+					The one architectural idea to internalize:
+					<b>the URL is the source of truth for filter state</b> — there is no
+					<code>useState</code> for the search query or selected tags.
+				</p>
+				<div class="flow">
+					<div class="step">
+						<div class="k">URL</div>
+						<div class="f">?q &amp; ?tags</div>
+					</div>
+					<div class="arrow">&rarr;</div>
+					<div class="step">
+						<div class="k">Zod</div>
+						<div class="f">search-schema</div>
+					</div>
+					<div class="arrow">&rarr;</div>
+					<div class="step">
+						<div class="k">Route</div>
+						<div class="f">useSearch()</div>
+					</div>
+					<div class="arrow">&rarr;</div>
+					<div class="step">
+						<div class="k">Pure fn</div>
+						<div class="f">filterFoods()</div>
+					</div>
+					<div class="arrow">&rarr;</div>
+					<div class="step">
+						<div class="k">UI</div>
+						<div class="f">MenuGrid</div>
+					</div>
+				</div>
+				<p>
+					The <code>index.tsx</code> route validates the incoming search params with the Zod schema,
+					reads them via <code>Route.useSearch()</code>, and passes them to the pure
+					<code>filterFoods(foods, {q, tags})</code>. Changing a filter <b>navigates</b> (updates
+					the URL) rather than setting local state — which is why searches are shareable and
+					bookmarkable, and the back button works.
+				</p>
+				<ul class="tight">
+					<li>
+						Typing in the search box uses <code>replace</code> (no history spam); toggling a tag
+						pill uses <code>push</code> (a deliberate, back-able action).
+					</li>
+					<li>
+						Filtering is <b>tags OR'd together, AND'd with a case-insensitive text match</b> across
+						name, description, and tags.
+					</li>
+					<li>
+						<code>filterFoods</code> and the Zod schema are plain functions with no React — that's
+						what makes them cheap to unit-test.
+					</li>
+					<li>
+						Prices always go through <code>formatPrice()</code> (never <code>.toFixed</code>) and
+						copy through <code>t()</code> — these are deliberate <b>localization seams</b> for a
+						future i18n library.
+					</li>
+					<li>
+						Dark mode is driven purely by the OS <code>prefers-color-scheme</code> via CSS variables
+						— no <code>dark:</code> classes and no toggle in the UI.
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2><span class="num">05</span> Red flags &amp; easy-to-miss things</h2>
+				<p class="section-sub">
+					Read these before your first PR. Most are one-line traps that cost an afternoon.
+				</p>
+				<div class="cards">
+					<div class="card">
+						<span class="tag">Good to know</span>
+						<h3>Adding a menu item is a two-file change</h3>
+						<p>
+							<code>FoodCard</code> looks up its image with <code>foodImages[food.image]</code>. If
+							you add a dish to <code>food.ts</code> whose <code>image</code> filename isn't also
+							imported in <code>food-images.ts</code> (which uses explicit per-image imports, not a
+							glob), the lookup is <code>undefined</code>. FoodCard now <b>guards</b> this and renders
+							a blank placeholder tile instead of crashing — but the dish stays <b>image-less</b>
+							until you add the import, so still update both files together.
+						</p>
+					</div>
+
+					<div class="card">
+						<span class="tag">Don't touch</span>
+						<h3><code>src/routeTree.gen.ts</code> is generated</h3>
+						<p>
+							The TanStack Router Vite plugin regenerates it on every dev/build. Never edit it by
+							hand — add routes by adding files under <code>src/routes/</code>. It's
+							linter/formatter-ignored on purpose.
+						</p>
+					</div>
+
+					<div class="card">
+						<span class="tag">Config gotcha</span>
+						<h3>Plugin order in <code>vite.config.ts</code> matters</h3>
+						<p>
+							<code>tanstackRouter()</code> must be listed <b>before</b> <code>react()</code> so it
+							can transform route files first. Reordering them silently breaks routing. A comment in
+							the file warns you — heed it.
+						</p>
+					</div>
+
+					<div class="card">
+						<span class="tag">No config file</span>
+						<h3>Tailwind v4 has no <code>tailwind.config.js</code></h3>
+						<p>
+							If you go looking for one, you'll waste time. All theme tokens (colors, fonts) are
+							declared in the <code>@theme</code> block inside <code>src/index.css</code>, and
+							dark-mode values are a <code>prefers-color-scheme</code> override in the same file.
+						</p>
+					</div>
+
+					<div class="card">
+						<span class="tag">Tooling surprise</span>
+						<h3>It's Oxlint, not ESLint</h3>
+						<p>
+							There's no <code>.eslintrc</code>. Lint config is <code>.oxlintrc.json</code> and the
+							command is <code>npm run lint</code>. Same idea, different (much faster) tool — don't
+							try to bolt ESLint plugins onto it.
+						</p>
+					</div>
+
+					<div class="card">
+						<span class="tag">Stale docs</span>
+						<h3>The README and specs lie a little</h3>
+						<p>
+							<code>README.md</code> is still the stock Vite template, and <code>claude.md</code> is
+							empty — neither describes this app. The design spec in
+							<code>docs/superpowers/specs/</code> even says "no search or filtering, display only,"
+							which is <b>no longer true</b> (search/filter were added after). Treat this page as
+							the current picture, not those.
+						</p>
+					</div>
+
+					<div class="card">
+						<span class="tag">Easy to miss</span>
+						<h3>Tests colocated &amp; kept out of the route tree</h3>
+						<p>
+							A <code>*.test.tsx</code> sits next to each source file — including inside
+							<code>src/routes/</code>. Those test files are excluded from routing via
+							<code>routeFileIgnorePattern</code> in the Vite config, so a test file won't
+							accidentally become a route.
+						</p>
+					</div>
+
+					<div class="card tip">
+						<span class="tag">Good to know</span>
+						<h3>Bad URLs won't crash the page</h3>
+						<p>
+							The Zod schema uses <code>.catch()</code> and strips empty values, so a rotted or
+							hand-edited link (unknown tags, <code>?q=</code> with no value) quietly falls back to
+							defaults and still renders the full menu. Empty filters are removed from the URL to
+							keep it clean.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<p class="note-line">
+				First good task to get your bearings: add a new dish. You'll touch
+				<code>food.ts</code> (data) and <code>food-images.ts</code> (image import) together, drop a
+				JPG into <code>src/assets/food-images/</code>, and add a test. That single change exercises
+				the data model, the image pipeline, and the biggest footgun above.
+			</p>
+		</div>
+	</body>
+</html>

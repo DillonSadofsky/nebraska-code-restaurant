@@ -51,4 +51,10 @@ describe('menu route (URL-driven filter + search)', () => {
 		})
 		expect(await screen.findByText('Showing 2 of 21 dishes')).toBeInTheDocument()
 	})
+
+	it('shows a subtle admin link in the footer pointing at /admin', async () => {
+		await renderAt('/')
+		expect(await screen.findByText('Showing 21 of 21 dishes')).toBeInTheDocument()
+		expect(screen.getByRole('link', { name: 'Admin' })).toHaveAttribute('href', '/admin')
+	})
 })
