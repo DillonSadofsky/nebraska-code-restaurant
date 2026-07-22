@@ -37,7 +37,7 @@ admin page calls `addFood()`.
 New-item id = `max(id over foods ∪ addedFoods) + 1`, computed in the store so ids
 never collide with built-ins.
 
-*Alternative considered:* a module-level external store with
+_Alternative considered:_ a module-level external store with
 `useSyncExternalStore`. Rejected — Context is the idiomatic fit and simpler for
 this scope.
 
@@ -47,13 +47,13 @@ this scope.
 
 ```ts
 export type Food = {
-  id: number
-  name: string
-  image: string        // bundled filename key (built-in items)
-  imageSrc?: string     // ready-to-use URL for runtime-added items
-  price: number
-  description: string
-  tags: Array<FoodTag>
+ id: number
+ name: string
+ image: string // bundled filename key (built-in items)
+ imageSrc?: string // ready-to-use URL for runtime-added items
+ price: number
+ description: string
+ tags: Array<FoodTag>
 }
 ```
 
